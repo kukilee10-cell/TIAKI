@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <title>TIAKI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+  <!-- MAIN DASHBOARD SCREEN -->
+  <main class="dashboard" id="dashboard">
+    <div class="container">
+      
+      <!-- HEADER: ASSURANCE -->
+      <header class="assurance-header" id="assuranceHeader">
+        <h1 id="assuranceStatement">All is quiet.</h1>
+        <p id="assuranceSubtext" class="dim-text">The important parts of your life are held safely. There is nothing you need to attend to right now.</p>
+      </header>
+
+      <!-- ACTIVE CARE SHELF -->
+      <section class="active-care-shelf hidden" id="activeCareShelf">
+        <h2 class="label gold-text">READY FOR CARE</h2>
+        <div class="shelf-list" id="activeCareList"></div>
+      </section>
+
+      <!-- LIFE VAULT GRID -->
+      <section class="life-vault-section">
+        <h2 class="label dim-text">LIFE VAULT</h2>
+        <div class="vault-grid">
+          <div class="vault-card" onclick="openVault('Assets & Property', ['vehicles', 'home'])">
+            <svg class="vault-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <h3>Assets & Property</h3>
+            <p class="dim-text">Vehicles, Home</p>
+          </div>
+          <div class="vault-card" onclick="openVault('Identity & Travel', ['travel', 'personal'])">
+            <svg class="vault-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <h3>Identity & Travel</h3>
+            <p class="dim-text">Passports, Licences</p>
+          </div>
+          <div class="vault-card" onclick="openVault('Family & Pets', ['family', 'pets'])">
+            <svg class="vault-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <h3>Family & Pets</h3>
+            <p class="dim-text">Care & Health</p>
+          </div>
+          <div class="vault-card" onclick="openVault('The Safe', ['documents'])">
+            <svg class="vault-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <h3>The Safe</h3>
+            <p class="dim-text">Vital Documents</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- TACTILE FLOATING BUTTON -->
+    <div class="action-bar">
+      <button class="btn-protect" onclick="openAddForm()">
+        <svg viewBox="0 0 24 24" class="btn-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10h3l-4 4-4-4h3V8h2v4z"/></svg>
+        Protect something
+      </button>
+    </div>
+  </main>
+
+  <!-- SLIDING VAULT DETAIL SCREEN -->
+  <div class="sliding-panel" id="vaultDetailPanel">
+    <div class="panel-header">
+      <button class="btn-back" onclick="closeVault()">
+        <svg viewBox="0 0 24 24" class="nav-arrow"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        Vault
+      </button>
+    </div>
+    <div class="panel-content container">
+      <div class="detail-hero">
+        <h2 id="detailVaultTitle">Vault Category</h2>
+        <p class="dim-text">This drawer holds your active records under secure supervision.</p>
+      </div>
+      <div id="detailList" class="detail-list"></div>
+      <div id="detailEmptyState" class="empty-state hidden">
+        <svg viewBox="0 0 24 24" class="empty-icon"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        <h3>This space is at rest.</h3>
+        <p class="dim-text">TIAKI is waiting to hold your assets. Return to the home screen and select 'Protect something' to place your first item under care.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT MODAL SHEET (Slide up bottom sheet) -->
+  <div class="modal-overlay" id="formOverlay" onclick="closeForm()">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <button class="btn-cancel" onclick="closeForm()">Cancel</button>
+        <span class="modal-title" id="formTitle">Place under care</span>
+        <div style="width: 50px;"></div> <!-- Spacer -->
+      </div>
+      <form id="itemForm" onsubmit="saveItem(event)">
+        <input type="hidden" id="itemId">
+        <p class="dim-text sheet-desc">Once registered, TIAKI will quietly look after this in the background until action is required.</p>
+        
+        <div class="input-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="e.g. Passport Expiry" required>
+        </div>
+
+        <div class="input-group">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="vehicles">Vehicles</option>
+            <option value="home">Home</option>
+            <option value="travel">Travel</option>
+            <option value="family">Family</option>
+            <option value="pets">Pets</option>
+            <option value="documents">Documents</option>
+            <option value="personal">Personal</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="importantDate">Important Date (Deadline)</label>
+          <input type="date" id="importantDate" required>
+        </div>
+
+        <div class="input-group">
+          <label for="reminderDate">Alert Date (Gentle Warning Window)</label>
+          <input type="date" id="reminderDate" required>
+        </div>
+
+        <div class="input-group">
+          <label for="notes">Notes (Optional)</label>
+          <textarea id="notes" rows="3" placeholder="Reference numbers, policy details..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Safekeep</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRMATION DIALOG -->
+  <div class="alert-overlay" id="deleteAlertOverlay">
+    <div class="alert-box">
+      <h3>Remove from TIAKI?</h3>
+      <p class="dim-text">This item will be removed from your Life Vault.</p>
+      <div class="alert-actions">
+        <button class="alert-btn btn-cancel-delete" onclick="cancelDelete()">Cancel</button>
+        <button class="alert-btn btn-confirm-delete" id="btnConfirmDelete">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
